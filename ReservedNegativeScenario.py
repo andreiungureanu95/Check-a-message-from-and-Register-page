@@ -1,3 +1,5 @@
+
+import driver as driver
 from selenium import webdriver
 from time import sleep
 from selenium.webdriver import Keys
@@ -10,6 +12,8 @@ driver.maximize_window()
 
 sleep(1)
 
+acceptCokie = driver.find_element(By.XPATH,'//*[@id="cookiebotDialogOkButton"]')
+acceptCokie.click()
 createAccount = driver.find_element(By.XPATH,'//*[@id="email_id"]')
 emailInput = driver.find_element(By.XPATH,'//*[@id="email_id"]')
 emailInput.send_keys("mihai@reserved.com")
@@ -22,13 +26,14 @@ LastNameInput.send_keys("Popescu")
 
 passwordInput = driver.find_element(By.XPATH,'//*[@id="password_id"]')
 passwordInput.send_keys("Abc.1234")
-checkBox = driver.find_element(By.CSS_SELECTOR,'#is_subscribed_id')\
+checkBox = driver.find_element(By.CSS_SELECTOR,'#is_subscribed_id')
 checkBox.click()
 sleep(2)
-createAccountLast = driver.find_element(By.CSS_SELECTOR,'#loginRegisterRoot > div > div.sc-dVNiOx.eRoZWc > div > form > button')
+createAccountLast = driver.find_element(By.XPATH,'//*[@id="loginRegisterRoot"]/div/div[2]/div/form/button')
 createAccountLast.click()
 sleep(1)
-duplicateAccount = driver.find_element(By.CSS_SELECTOR,'#loginRegisterRoot > div > div.sc-dVNiOx.eRoZWc > div > div.sc-kYHenr.hqKtAx')
+duplicateAccount = driver.find_element(By.XPATH,'//*[@id="loginRegisterRoot"]/div/div[2]/div/div[1]')
+sleep(2)
 
 assert duplicateAccount
 print("you have already registred with this email adress")
